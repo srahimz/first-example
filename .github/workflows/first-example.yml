@@ -9,6 +9,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4 # checkout added
 
+      - name : install cowsay program
+        run: sudo apt-get install cowsay -y  
+
       - name: List and Read file
         run: |
           echo "My first GHA job" # welcome msg
