@@ -10,7 +10,7 @@ jobs:
         run: actions/checkout@v4 # checkout added
 
       - name: welcome message
-        run: echo "My first GHA job"
+        run: echo "My first GHA job" 
 
       - name: list files
         run: ls
