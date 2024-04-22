@@ -18,11 +18,6 @@ jobs:
         with:
           name: dragon-file
           path: dragon.txt
-
-      - name: Download Whale file
-        uses: actions/download-artifact@v4
-        with:
-          name: dragon-file
           
       - name: Test file exists
         run: grep -i "dragon" dragon.txt
