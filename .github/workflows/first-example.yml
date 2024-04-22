@@ -9,11 +9,18 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4 # checkout added
 
-      - name: welcome message
-        run: echo "My first GHA job" # welcome msg
+      - name: List and Read file
+        run: |
+          echo "My first GHA job" # welcome msg
+          ls -ltra
+          cat README.md
 
-      - name: list files # list files
-        run: ls
+      - name: Generate ASCII artwork
+        run: cowsay -f cat "Run for cover, I am a Cat" >> cat.txt
+        
 
-      - name: Read file
-        run: cat README.md
+      # - name: list files # list files
+      #   run: ls
+
+      # - name: Read file
+      #   run: cat README.md
