@@ -13,7 +13,6 @@ jobs:
         run: |
           echo "My first GHA job" # welcome msg
           ls -ltra
-          cat README.md
 
       - name: Generate ASCII artwork
         run: cowsay -f cat "Run for cover, I am a Cat" >> cat.txt
