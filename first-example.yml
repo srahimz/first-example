@@ -12,7 +12,7 @@ jobs:
       - name: welcome message
         run: echo "My first GHA job" # welcome msg
 
-      - name: list files
+      - name: list files # list files
         run: ls
 
       - name: Read file
