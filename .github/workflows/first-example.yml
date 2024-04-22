@@ -1,0 +1,19 @@
+name: My frist workflow
+
+on: push
+
+jobs:
+  first_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        run: actions/checkout@v4 # checkout added
+
+      - name: welcome message
+        run: echo "My first GHA job" # welcome msg
+
+      - name: list files # list files
+        run: ls
+
+      - name: Read file
+        run: cat README.md
