@@ -11,13 +11,13 @@ jobs:
         run: sudo apt-get install cowsay -y
 
       - name: Execute cowsay CMD
-        run: cowsay -f cows/docker-whale.cow "Look!! it is the docker whale" >> whale.txt
+        run: cowsay -f dragon "Look!! it is a Dragon" >> dragon.txt
       
       - name: Upload Whale file
         uses: actions/upload-artifact@v3
         with:
-          name: Whale-file
-          path: whale.txt
+          name: dragon-file
+          path: dragon.txt
 
   Test-job:
     needs: Build-job
@@ -27,10 +27,10 @@ jobs:
       - name: Download Whale file
         uses: actions/download-artifact@v4
         with:
-          name: Whale-file
+          name: dragon-file
           
       - name: Test file exists
-        run: grep -i "whale" whale.txt
+        run: grep -i "dragon" dragon.txt
 
   Deploy-job:
     needs: Test-job
@@ -40,10 +40,10 @@ jobs:
       - name: Download Whale file
         uses: actions/download-artifact@v3
         with:
-          name: Whale-file
+          name: dragon-file
 
       - name: read file
-        run: cat whale.txt
+        run: cat dragon.txt
 
       - name: Deploy
         run: echo Deploying ...
