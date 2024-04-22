@@ -3,31 +3,46 @@ name: My frist workflow
 on: push
 
 jobs:
-  first_job:
+  Build-job:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4 # checkout added
+      - name: Install cowsay cli
+        run: sudo apt-get intall cowsay -y
 
-      - name : install cowsay program
-        run: sudo apt-get install cowsay -y  
+      - name: Execute cowsay CMD
+        run: cowsay -f whale "Look!! it is the docker whale" >> whale.txt
+      
+      - name: Upload Whale file
+        uses: actions/upload-artifact@v4
+        with:
+          name: Docker Whale file
+          path: whale.txt
 
-      - name: List and Read file
-        run: |
-          echo "My first GHA job" # welcome msg
-          ls -ltra
+  Test-job:
+    needs: Build-job
+    runs-on: ubuntu-latest
 
-      - name: Generate ASCII artwork
-        run: cowsay -f dragon "Run for cover, I am a Dragon" >> dragon.txt
+    steps:
+      - name: Download Whale file
+        uses: actions/download-artifact@v4
+        with:
+          name: Docker whale file
+          
+      - name: Test file exists
+        run: grep -i "whale" whale.txt
 
-      - name: Test the file exist
-        run: grep -i "dragon" dragon.txt 
+  Deploy-job:
+    runs-on: ubuntu-latest
 
-      - name: Read file
-        run: cat dragon.txt
-        
-      - name: checkout repo file
-        run: ls
+    steps:
+      - name: Download Whale file
+        uses: actions/download-artifact@v4
+        with:
+          name: Docker whale file
 
-      # - name: Read file
-      #   run: cat README.md
+      - name: read file
+        run: cat whale.txt
+
+      - name: Deploy
+        run: echo Deploying ...
